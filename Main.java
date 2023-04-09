@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * Lab 9: Thread Barrier
@@ -35,5 +36,27 @@ public class Main {
         // There are threadCount threads
         
         // Add code here
+        Scanner input = new Scanner(System.in);
+        System.out.println("Input the number of threads to be created");
+        //Updates the number of threads to run.
+        threadCount = input.nextInt();
+
+        if (threadCount < barrierSize) {
+            System.out.println("The number of threads is less than the barrier size");
+            System.exit(0);
+        } else {
+            
+        }
+
+        //Output code
+        System.out.println("Number of threads = " + threadCount);
+        Process p = new Process(barrier, i, r.nextInt(sleepTime));
+        //Creates the processes
+        for (int i = 0; i < threadCount; i++) {
+            Thread t = new Thread(p);
+            t.start();
+        }
+
+        
     }
 }
