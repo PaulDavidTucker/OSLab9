@@ -36,6 +36,7 @@ public class Barrier {
 
         // add code here
 
+
         System.out.println(p.getName() + " passed the barrier");
     }
 }
