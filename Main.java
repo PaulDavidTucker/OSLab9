@@ -50,11 +50,13 @@ public class Main {
 
         //Output code
         System.out.println("Number of threads = " + threadCount);
-        Process p = new Process(barrier, i, r.nextInt(sleepTime));
+
         //Creates the processes
         for (int i = 0; i < threadCount; i++) {
+            Process p = new Process(barrier, i, r.nextInt(sleepTime));
             Thread t = new Thread(p);
             t.start();
+            System.out.println("Thread " + i + " started");
         }
 
         
