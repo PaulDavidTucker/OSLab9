@@ -20,6 +20,8 @@ public class Barrier {
      */
     private int currentCount;
 
+    //We use synchronized because it prevents issues with concurrency and race conditions. If using many threads, it is likely that two threads will attempt to access the same variable.
+    //Synchronized prevents this from happening, by only allowing one thread to access the variable at a time.
     public synchronized void incrementCount() {
         this.currentCount++;
     }
