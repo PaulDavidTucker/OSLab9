@@ -20,6 +20,9 @@ public class Barrier {
      */
     private int currentCount;
 
+    public synchronized void incrementCount() {
+        this.currentCount++;
+    }
 
     /**
      * Create a barrier of a given size
@@ -36,20 +39,28 @@ public class Barrier {
      *
      * @param p The process joining
      */
-    public void joinBarrier(Process p) {
-        
 
-        // add code here
-        if (currentCount < barrierSize) {
-            currentCount++;
-            System.out.println(p.getName() + " waiting on barrier");
-        } else if (currentCount >= barrierSize){
-            System.out.println(p.getName() + " passed the barrier");
-            currentCount++;
-        } else {
-            System.out.println("Error");
+    public synchronized void waitProcess()  throws InterruptedException{
+        
+        //Until barrier breaks
+        while (currentCount < barrierSize) {
+            wait();
         }
 
+        //Opens barrier becuase all processes are notified to continue running.
+        notifyAll();
+    }
+
+    public void joinBarrier(Process p) throws InterruptedException {
+        //output and stuff
+        System.out.println(p.getName() + " waiting on barrier");
+        //Syncronized increment
+        incrementCount();
+        //hold all processes until barrier breaks
+        waitProcess();
+        
+        //Output code
+        System.out.println(p.getName() + " passed the barrier");
 
         
     }
