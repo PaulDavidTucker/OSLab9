@@ -54,8 +54,9 @@ public class Main {
         //Creates the processes
         for (int i = 0; i < threadCount; i++) {
             Process p = new Process(barrier, i, r.nextInt(sleepTime));
-            Thread t = new Thread(p);
-            t.start();
+            p.run();
+            // Thread t = new Thread(p);
+            // t.start();
             //For debugging purposes
             System.out.println("Thread " + i + " started");
         }
