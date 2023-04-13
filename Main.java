@@ -39,7 +39,12 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.println("Input the number of threads to be created");
         //Updates the number of threads to run.
-        threadCount = input.nextInt();
+        try {
+            threadCount = Integer.parseInt(args[0]);
+        } catch (Exception e) {
+            threadCount = input.nextInt();
+        }
+        
 
         if (threadCount < barrierSize) {
             System.out.println("The number of threads is less than the barrier size");
