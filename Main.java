@@ -56,6 +56,7 @@ public class Main {
             Process p = new Process(barrier, i, r.nextInt(sleepTime));
             Thread t = new Thread(p);
             t.start();
+            //For debugging purposes
             System.out.println("Thread " + i + " started");
         }
 
