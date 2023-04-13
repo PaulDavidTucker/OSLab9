@@ -15,6 +15,11 @@ public class Barrier {
      */
     private int barrierSize;
 
+    /**
+     * Current Number of processes added to the barrier
+     */
+    private int currentCount;
+
 
     /**
      * Create a barrier of a given size
@@ -32,11 +37,20 @@ public class Barrier {
      * @param p The process joining
      */
     public void joinBarrier(Process p) {
-        System.out.println(p.getName() + " waiting on barrier");
+        
 
         // add code here
+        if (currentCount < barrierSize) {
+            currentCount++;
+            System.out.println(p.getName() + " waiting on barrier");
+        } else if (currentCount >= barrierSize){
+            System.out.println(p.getName() + " passed the barrier");
+            currentCount++;
+        } else {
+            System.out.println("Error");
+        }
 
 
-        System.out.println(p.getName() + " passed the barrier");
+        
     }
 }
